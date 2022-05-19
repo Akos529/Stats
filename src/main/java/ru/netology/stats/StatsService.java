@@ -11,24 +11,19 @@ public class StatsService {
     }
 
     public int calculateAverageSum(int[] sales) {
-        int sum = 0;
-        for (int sale : sales) {
-            sum += sale;
-        }
+        int sum = calculateTotalSum(sales);
         int months = sales.length;
         return sum / months;
     }
 
     public int minSales(int[] sales) {
         int minMonth = 0;
-        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
+        int month = 0;
         for (int sale : sales) {
-            // sales[minMonth] - продажи в месяце minMonth
-            // sale - продажи в рассматриваемом месяце
             if (sale <= sales[minMonth]) {
                 minMonth = month;
             }
-            month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
+            month = month + 1;
         }
         return minMonth + 1;
     }
@@ -46,13 +41,7 @@ public class StatsService {
     }
 
     public int calcMonthsBelowAverage(int[] sales) {
-        int sum = 0;
-        for (int sale : sales) {
-            sum += sale;
-        }
-        int months = sales.length;
-        int average = sum / months;
-
+        int average = calculateAverageSum(sales);
         int monthsBelowAverage = 0;
         for (int sale : sales) {
             if (sale < average) {
@@ -64,13 +53,7 @@ public class StatsService {
     }
 
     public int calcMonthsAboveAverage(int[] sales) {
-        int sum = 0;
-        for (int sale : sales) {
-            sum += sale;
-        }
-        int months = sales.length;
-        int average = sum / months;
-
+        int average = calculateAverageSum(sales);
         int monthsAboveAverage = 0;
         for (int sale : sales) {
             if (sale > average) {
